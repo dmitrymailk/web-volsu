@@ -1,0 +1,138 @@
+* {
+  font-family: 'Neucha', cursive !important;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  background: #F8F8FA;
+}
+
+.main-page {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main-page__left {
+  width: 70%;
+  height: 100%;
+  padding-left: 64px;
+}
+
+.main-page__right {
+  width: 30%;
+  height: 100%;
+  background: #6DCBA9;
+  position: relative;
+}
+
+.main-page__right-img {
+  position: absolute;
+  left: -377px;
+  top: -100px;
+}
+
+.main-page__right-name {
+  position: absolute;
+  left: -128px;
+  top: 0px;
+  width: 256px;
+  height: 128px;
+  color: #FFFFFF;
+  font-size: 40px;
+  background: #000000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main-page__right-buy {
+  background: #000000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 237px;
+  height: 68px;
+  color: #FFFFFF;
+  font-size: 36px;
+  left: 256px;
+  bottom: -17px;
+  position: absolute;
+}
+
+.main-page__right-buy:active {
+  color: #000000;
+}
+
+.main-page__right-buy:hover {
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.main-page__right-buy img {
+  margin-left: 16px;
+}
+
+.main-page__nav {
+  margin: 64px 0 0  0;
+}
+
+.main-page__title {
+  font-size: 64px;
+  line-height: 70px;
+}
+
+.main-page__desc {
+  margin-top: 48px;
+  font-size: 24px;
+  line-height: 26px;
+}
+
+.basket {
+  position: relative;
+}
+
+.basket-circle {
+  position: absolute;
+  bottom: 0px;
+  right: 7px;
+  background: #cccccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 16px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.nav-link {
+  font-size: 36px;
+  color: #000000;
+}
+
+.nav-link:hover {
+  color: #000000;
+}
+/*# sourceMappingURL=index.css.map */
