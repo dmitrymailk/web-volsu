@@ -1,0 +1,98 @@
+.app
+  &__left
+    height: 100%
+    overflow-y: scroll
+    padding-bottom: 50px
+    &::-webkit-scrollbar 
+      width: 0
+      height: 0
+
+  &__right
+    &-img
+      left: 0
+      top: 0
+      height: 100%
+      width: 100%
+      img
+        height: 100%
+        width: 100%
+
+
+.recommendation
+  &-card
+    width: 368px
+    height: 263px
+    min-width: 368px
+    min-height: 263px
+    margin-right: 32px
+    img
+      height: 152px
+      width: 100%
+    &__title
+      font-size: 22px
+      height: 53px
+      overflow: hidden
+      display: inline-block 
+    &__body
+      height: 111px
+    &__info
+      display: flex
+      paddting-top: auto
+      height: 24px
+      align-items: center
+      width: 100%
+    &__price
+      margin-left: auto
+      font-size: 22px
+      height: 17px
+      position: relative
+      bottom: 4px
+    &__stars
+      display: flex
+      align-self: flex-end
+      img
+        height: 16px
+        width: 16px
+        margin-right: 4px
+        
+    &__amount
+      position: absolute
+      height: 64px
+      width: 100px
+      font-size: 36px
+      display: flex
+      align-items: center
+      justify-content: center
+      color: #ffffff
+      background: #000000
+      right: 0px
+      top: 0px
+
+
+.category-card
+  width: 192px
+  height: 192px
+  min-width: 192px
+  height: 192px
+  margin-right: 64px
+  border-radius: 16px !important  
+  img
+    width: 128px
+    height: 128px
+    margin: 0 auto
+    margin-top: 10px
+  &_meat
+    background: #E5454C
+  &_drink
+    background: #5653D4
+  &_vegetables
+    background: #FAA33F
+  &__title
+    font-size: 26px
+    color: #FFFFFF
+    text-align: center
+    
+
+
+
+

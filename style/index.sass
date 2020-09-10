@@ -6,7 +6,7 @@ body, html
   width: 100%
   background: #F8F8FA
 
-.main-page
+.app
   height: 100%
   width: 100%
   display: flex
@@ -35,6 +35,10 @@ body, html
       display: flex
       align-items: center
       justify-content: center
+      z-index: 4
+      &:hover
+        color: #FFFFFF
+        text-decoration: none
     &-buy
       background: #000000
       display: flex
@@ -50,8 +54,8 @@ body, html
       &:active
         color: #000000
       &:hover
-        cursor: pointer
         color: #ffffff
+        text-decoration: none
       img
         margin-left: 16px
 
@@ -85,5 +89,63 @@ body, html
 .nav-link
   font-size: 36px
   color: #000000
+  position: relative
   &:hover
     color: #000000
+    &::after
+      content: url("../img/_.svg")
+      position: absolute
+      bottom: -9px
+      left: 40%
+  &.active
+    position: relative
+    &::after
+      content: url("../img/_.svg")
+      position: absolute
+      bottom: -9px
+      left: 40%
+
+// menu bootstrap custom
+.card
+  border-radius: 8px
+  &-title 
+    margin-bottom: 0
+  &-body 
+    padding: 12px
+    position: relative
+
+// general css
+
+.section
+  margin-top: 43px
+  position: relative
+  &__title
+    font-size: 28px
+  &__cards
+    margin-top: 24px
+    display: flex
+    overflow-x: scroll
+    // overflow-y: visible
+    padding-right: 64px
+    width: 100%
+    &::-webkit-scrollbar 
+      width: 0
+      height: 0
+    .card
+      cursor: pointer
+      &:first-child
+        margin-left: 16px
+  &__next
+    height: 64px
+    width: 64px
+    background: #000000
+    display: flex
+    align-items: center
+    justify-content: center
+    align-self: center
+    justify-self: flex-end
+    position: absolute
+    top: 50%
+    right: 8px
+    z-index: 3
+    cursor: pointer
