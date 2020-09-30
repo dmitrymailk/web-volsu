@@ -1,0 +1,74 @@
+.section__history-cards {
+  margin-left: 16px;
+}
+
+.history-card {
+  width: 623px;
+  margin-top: 24px;
+}
+
+.history-card__date {
+  font-size: 28px;
+  color: #5A5A5A;
+}
+
+.history-card__items {
+  margin-top: 16px;
+}
+
+.history-card__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 48px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 12px;
+}
+
+.history-card__card-name {
+  margin-left: 12px;
+  font-size: 18px;
+  width: 394px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.history-card__amount {
+  width: 70px;
+  font-size: 22px;
+  margin-left: 16px;
+}
+
+.history-card__price {
+  font-size: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.history-card__result {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 16px;
+}
+
+.history-card__total {
+  font-size: 30px;
+}
+
+.history-card__repeat {
+  width: 133px;
+  height: 40px;
+  background: #141414;
+  border-radius: 8px;
+  color: #ffffff;
+  margin-left: auto;
+  border: none;
+  outline: none !important;
+  font-size: 22px;
+}
+/*# sourceMappingURL=profile.css.map */
