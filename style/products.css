@@ -1,0 +1,82 @@
+.app__left {
+  height: 100%;
+  overflow-y: scroll;
+  padding-bottom: 50px;
+}
+
+.app__left::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.app__right-img {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.app__right-img img {
+  height: 100%;
+  width: 100%;
+}
+
+.product-card {
+  width: 209px;
+  height: 346px;
+  min-width: 209px;
+  min-height: 346px;
+  margin-right: 16px;
+  border-radius: 16px 16px 8px 8px;
+}
+
+.product-card img {
+  height: 250px;
+  width: 100%;
+}
+
+.product-card__body {
+  height: 96px;
+}
+
+.product-card__title {
+  font-size: 19px;
+  height: 42px;
+}
+
+.product-card__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.product-card__price {
+  margin-left: auto;
+  font-size: 22px;
+  height: 17px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 5px;
+}
+
+.product-card__amount {
+  position: absolute;
+  height: 64px;
+  width: 100px;
+  font-size: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #ffffff;
+  background: #000000;
+  right: 0;
+  top: 0;
+}
+/*# sourceMappingURL=products.css.map */
