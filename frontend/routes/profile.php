@@ -16,6 +16,7 @@ session_start();
   <link rel="stylesheet" href="../style/menu.css">
   <link rel="stylesheet" href="../style/busket.css">
   <link rel="stylesheet" href="../style/profile.css">
+  <link rel="stylesheet" href="../style/components/search.css">
 </head>
 
 <body>
@@ -38,6 +39,11 @@ session_start();
         <div class="section">
           <h2>Уже есть аккаунт? <a href="../auth/login.php">Войти в аккаунт </a></h2>
           <h2>Первый раз на сайте? <a href="../auth/register.php">Зарегистрировать аккаунт </a></h2>
+          <?php 
+          print($_SESSION["debug"]);
+          foreach($_SESSION["debug"] as $item) echo $item;
+          unset($_SESSION["debug"]);
+          ?>
         </div>
       <?php else : ?>
         <a href="../../backend/logout.php">Выйти из аккаунта </a>
@@ -89,14 +95,8 @@ session_start();
             } else {
               echo "<h4> История заказов пуста...</h4>";
             }
-
-
             ?>
           </div>
-
-          <!-- </div> -->
-          <!-- </div> -->
-
         </div>
       <?php endif; ?>
     </div>
@@ -106,14 +106,35 @@ session_start();
       <div class="app__right-img">
         <img src="../img/back.png" alt="" srcset="">
       </div>
-      <a class="app__right-name" href="/index.html">
+      <a class="app__right-name" href="../index.html">
         ДОМ У ЕДЫ™
       </a>
-      <h1>qweqwe</h1>
-      <h1>qweqwe</h1>
-      <h1>qweqwe</h1>
-      <h1>qweqwe</h1>
-
+      <div class="search">
+        <form class="search__input" action="../../backend/search/search.php" method="POST">
+          <input type="text" placeholder="Поиск по сайту" name="search" class="search__input-field">
+          <button type="submit">
+            <img src="../img/components/search/search-button.svg" alt="" srcset="">
+          </button>
+          </form>
+        <div class="search__results">
+          <div class="search-card">
+            <a class="search-card__title" target="_blank" href="http://localhost/frontend/routes/products.html">Продукты</a>
+            <p class="search-card__body">It is a long  <b>established</b> fact that a reader will be distracted by the readable content of</p>
+          </div>
+          <?php
+          $search_content = $_SESSION['search_content'];
+          $title = $_SESSION['search_title'];
+          if(isset($_SESSION['search_content'])) {
+            echo ("
+            <div class='search-card'>
+              <a class='search-card__title' target='_blank' href='http://localhost/frontend/routes/products.html'>$title</a>
+              <p class='search-card__body'>$search_content</p>
+            </div>
+            ");
+          }
+        ?>
+        </div>
+      </div>
     </div>
   </div>
 
