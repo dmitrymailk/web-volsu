@@ -40,12 +40,12 @@ session_start();
           <h2>Первый раз на сайте? <a href="../auth/register.php">Зарегистрировать аккаунт </a></h2>
         </div>
       <?php else : ?>
-        <a href="../backend/logout.php">Выйти из аккаунта </a>
+        <a href="../../backend/logout.php">Выйти из аккаунта </a>
         <div class="section">
           <div class="section__title"><span>История заказов </div>
           <div class="section__history-cards">
             <?php
-            require_once "../backend/connect.php";
+            require_once "../../backend/connect.php";
             $login = $_SESSION["USER"]['login'];
             $user_history = mysqli_query($connect, "SELECT * FROM `users_info` WHERE `user_login` = '$login'");
 
@@ -109,6 +109,11 @@ session_start();
       <a class="app__right-name" href="/index.html">
         ДОМ У ЕДЫ™
       </a>
+      <h1>qweqwe</h1>
+      <h1>qweqwe</h1>
+      <h1>qweqwe</h1>
+      <h1>qweqwe</h1>
+
     </div>
   </div>
 

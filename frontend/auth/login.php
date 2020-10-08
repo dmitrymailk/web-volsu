@@ -17,7 +17,7 @@ session_start();
 <body>
   <div class="auth">
     <div class="auth__title">Вход в аккаунт</div>
-    <form class="auth__form" action="../backend/login.php" method="POST">
+    <form class="auth__form" action="../../backend/login.php" method="POST">
       <div class="auth__desc">Логин</div>
       <input class="auth__input" name="login" />
       <div class="auth__desc">Пароль</div>

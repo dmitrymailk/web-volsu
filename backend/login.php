@@ -5,12 +5,14 @@ require_once "connect.php";
 $login = $_POST['login'];
 $password = md5($_POST['password']);
 
-$user_exists = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login' and `password` = '$password'")) > 0;
+$user_exists = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM `users` WHERE `login` = '$login' and `password` = '$password'")) == 1;
+
 
 if ($user_exists) {
   $_SESSION["USER"] = [
     "login" => $login
   ];
+
   // $_SESSION["user_data"] = [
   //   [
   //     "date" => "29-09-2020",
@@ -28,8 +30,9 @@ if ($user_exists) {
   //     ]
   //   ]
   // ];
-  header("Location: ../routes/profile.php");
+  header("Location: ../frontend/routes/profile.php");
 } else {
   $_SESSION['login_error'] = "Incorrect user credentials";
-  header("Location: ../auth/login.php");
+
+  header("Location: ../frontend/auth/login.php");
 }

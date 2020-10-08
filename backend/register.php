@@ -13,9 +13,9 @@ if (strlen($login) < 3) {
   $is_register = mysqli_query($connect, "INSERT INTO `users` (`login`, `password`) VALUES ('$login', '$password')");
   if ($is_register) {
     $_SESSION['register_success'] = "You successfully signed up!";
-    header("Location: ../routes/profile.php");
+    header("Location: ../frontend/routes/profile.php");
   } else {
     $_SESSION['register_error'] = "Registration error!";
-    header("Location: ../auth/register.php");
+    header("Location: ../frontend/auth/register.php");
   }
 }
