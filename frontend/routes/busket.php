@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,10 +28,10 @@
       <div class="app__left">
         <div class="app__nav">
           <nav class="nav">
-            <a class="nav-link" href="./menu.html">Меню</a>
-            <a class="nav-link" href="./produc..ts.html">Продукты</a>
+            <a class="nav-link" href="./menu.php">Меню</a>
+            <a class="nav-link" href="./products.php">Продукты</a>
             <a class="nav-link" href="./profile.php">Кабинет</a>
-            <a class="nav-link basket active" href="./busket.html"
+            <a class="nav-link basket active" href="./busket.php"
               >Корзина
               <img src="../img/basket.svg" alt="" srcset="" />
               <div class="basket-circle">
@@ -107,7 +110,7 @@
         <a class="app__right-name" href="../index.html">
           ДОМ У ЕДЫ™
         </a>
-      
+        <?php include "../components/search.php"; ?>
       </div>
     </div>
   </body>
