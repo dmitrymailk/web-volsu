@@ -200,6 +200,7 @@ body, html {
 
 .section__cards .card {
   cursor: pointer;
+  color: #000000;
 }
 
 .section__cards .card:first-child {

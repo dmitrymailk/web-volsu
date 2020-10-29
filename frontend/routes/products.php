@@ -41,7 +41,7 @@ session_start();
         <div class="section">
           <div class="section__title">Мясные изделия</div>
           <div class="section__cards">
-            <div class="card product-card" >
+            <a class="card product-card" href="./product-info.php">
               <img src="../img/products/meat/1.png" class="card-img-top" alt="...">
               <div class="card-body product-card__body">
                 <h5 class="card-title product-card__title">Сосиски баварские на гриле</h5>
@@ -51,7 +51,7 @@ session_start();
                   </div>
                 </div>
               </div>
-              </div>
+            </a>
 
             <div class="card product-card" >
               <img src="../img/products/meat/2.png" class="card-img-top" alt="...">

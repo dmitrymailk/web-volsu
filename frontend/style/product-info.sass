@@ -1,0 +1,96 @@
+.app
+  &__left
+    height: 100%
+    overflow-y: scroll
+    padding-bottom: 50px
+    &::-webkit-scrollbar 
+      width: 0
+      height: 0
+  &__right
+    &-img
+      left: 0
+      top: 0
+      height: 100%
+      width: 100%
+      img
+        height: 100%
+        width: 100%
+
+.product-info
+  width: 100%
+  margin-top: 64px
+  &__title
+    font-family: Neucha
+    font-size: 28px
+  &__group
+    display: flex
+    width: 100%
+    max-width: 707px
+    margin-top: 56px
+
+  &__img
+    width: 360px
+    height: 240px
+    margin-right: 32px
+  &__controls
+    margin-left: auto
+  &__amount
+    display: flex
+    width: 260px
+    position: relative
+    align-items: center
+    &-title
+      font-family: Neucha
+      font-size: 18px
+    &-input
+      width: 60px
+      height: 32px
+      border: 1px solid #484848
+      box-sizing: border-box
+      border-radius: 8px
+      margin-left: auto
+      outline: none !important
+      padding: 8px
+      text-align: center
+      &_incorrect
+        border: 1px solid #df3535
+    span
+      position: absolute
+      right: 70px
+      top: 4px
+      font-size: 20px
+  &__promocode
+    display: flex
+    width: 260px
+    margin-top: 16px
+    align-items: center
+    &-title
+      font-family: Neucha
+      font-size: 18px
+    &-code
+      width: 165px
+      height: 32px
+      border: 1px solid #484848
+      box-sizing: border-box
+      border-radius: 8px
+      margin-left: auto
+      outline: none !important
+      padding: 8px
+      text-align: center
+      &_incorrect
+        border: 1px solid #df3535
+  &__cart
+    display: flex
+    align-items: center
+    justify-content: center
+    color: #ffffff
+    background: #141414
+    width: 261px
+    height: 57px
+    margin-top: 105px
+    border: none
+    outline: none !important
+    font-size: 24px
+  &__name
+    margin-top: 48px
+    font-size: 24px
