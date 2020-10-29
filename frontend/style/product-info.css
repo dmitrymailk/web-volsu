@@ -143,6 +143,10 @@
   font-size: 24px;
 }
 
+.product-info__cart:disabled {
+  cursor: not-allowed;
+}
+
 .product-info__name {
   margin-top: 48px;
   font-size: 24px;

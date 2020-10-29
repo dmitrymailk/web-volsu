@@ -72,7 +72,7 @@ session_start();
 
               <div class="product-info__promocode">
                 <div class="product-info__promocode-title">Промокод:</div>
-                <input class="product-info__promocode-code" name="promocode">
+                <input class="product-info__promocode-code" id="promocode" name="promocode">
               </div>
 
               <button class="product-info__cart" type="submit" id="submit" disabled>
@@ -106,37 +106,69 @@ session_start();
   window.onload = () => {
     const $ = (selector) => document.querySelector(selector);
     let amount = $('#amount');
+    let promocode = $("#promocode")
 
     let state = {
       amount: false,
-      // promocode: false
+      promocode: false
     }
 
     amount.addEventListener("input", (e) => {
-      // console.log(e)
+      
       let elem = e.srcElement
       const isNum = isNumber(elem.value)
       let elemClassIncorrect = `${amount.classList[0]}_incorrect`
-      // debugger
+      
       if (!isNum && !amount.classList.contains(elemClassIncorrect)) {
         amount.classList.add(elemClassIncorrect)
         setState('amount', false)
-      } else if (amount.classList.contains(elemClassIncorrect)) {
-        amount.classList.remove(elemClassIncorrect)
+      } else if(isNum) {
+        if (amount.classList.contains(elemClassIncorrect)) {
+          amount.classList.remove(elemClassIncorrect)
+        }
+
+        const correctRange = +elem.value > 0 && +elem.value < 10;
+
+        if (correctRange) {
+          setState('amount', true);
+        } else {
+          amount.classList.add(elemClassIncorrect)
+          setState('amount', false)
+        }
+
       }
 
-      const correctRange = +elem.value > 0 && +elem.value < 10;
 
-      if (isNum && correctRange) setState('amount', true);
+      checkState()
+    })
 
+    promocode.addEventListener('input', e => {
+      let elem = e.srcElement;
+      const isMatch = correctMatch(elem.value);
+      
+      let elemClassIncorrect = `${promocode.classList[0]}_incorrect`
+      
+      if (!isMatch && !promocode.classList.contains(elemClassIncorrect)) {
+        promocode.classList.add(elemClassIncorrect)
+        setState('promocode', false)
+      } else if (isMatch){
+        if (promocode.classList.contains(elemClassIncorrect)) {
+          promocode.classList.remove(elemClassIncorrect)
+        }
+        setState('promocode', true);
+      }
+      checkState()
     })
 
     function checkState() {
-      let allCorrect = false;
+      let allCorrect = true;
       let states = Object.keys(state);
+      // console.log(states)
       states.forEach(elem => {
+        // console.log(elem, state[elem])
         allCorrect = allCorrect && state[elem]
-        })
+      })
+      // console.log(allCorrect)
       disableButton(allCorrect)
     }
 
@@ -147,12 +179,16 @@ session_start();
     }
 
     function disableButton(condition) {
-      $('#submit').disabled = condition
+      $('#submit').disabled = !condition
     }
-
 
     function setState(_state, payload) {
       state[_state] = payload
+    }
+
+    function correctMatch(value) {
+      const pattern = /^[a-z0-9]{3}-[a-z0-9]{3}-[a-z0-9]{3}$/;
+      return pattern.test(value)
     }
 
   }
