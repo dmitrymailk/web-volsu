@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+if(!isset($_SESSION['USER']))
+  header("Location: ../frontend/auth/register.php");
+
 $amount = $_POST['amount'];
 $promocode = $_POST['promocode'];
 $uuid = $_POST['uuid'];

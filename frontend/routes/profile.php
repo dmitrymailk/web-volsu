@@ -39,14 +39,11 @@ session_start();
         <div class="section">
           <h2>Уже есть аккаунт? <a href="../auth/login.php">Войти в аккаунт </a></h2>
           <h2>Первый раз на сайте? <a href="../auth/register.php">Зарегистрировать аккаунт </a></h2>
-          <!-- <?php
-                // print($_SESSION["debug"]);
-                // foreach($_SESSION["debug"] as $item) echo $item . "\n ";
-                // unset($_SESSION["debug"]);
-                ?> -->
+          
         </div>
       <?php else : ?>
         <a href="../../backend/logout.php">Выйти из аккаунта </a>
+        
         <div class="section">
           <div class="section__title"><span>История заказов </div>
           <div class="section__history-cards">

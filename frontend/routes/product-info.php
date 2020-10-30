@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(!isset($_SESSION['USER']))
+  header("Location: ../auth/register.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

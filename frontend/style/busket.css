@@ -1,4 +1,33 @@
 .product-card {
   margin-right: 64px;
 }
+
+.basket__total {
+  font-size: 24px;
+}
+
+.basket__order {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #ffffff;
+  background: #141414;
+  width: 261px;
+  height: 57px;
+  margin-top: 64px;
+  border: none;
+  outline: none !important;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.basket__order:hover {
+  color: #ffffff;
+}
 /*# sourceMappingURL=busket.css.map */
