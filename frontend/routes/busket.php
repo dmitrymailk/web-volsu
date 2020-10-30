@@ -40,7 +40,29 @@ session_start();
             </a>
         </div>
 
-        <div class="section">
+        <?php 
+          // print_r($_SESSION);
+
+          $products = [
+            'qwe123' => [
+              'img' => '../img/products/vegetables/1.png',
+              'title' => 'Сильно прожаренный картофель',
+              'price' => 159
+            ],
+            'asd123' => [
+              'img' => '../img/products/meat/1.png',
+              'title' => 'Сосиски баварские на гриле',
+              'price' => 399
+            ],
+            'zxc123' => [
+              'img' => '../img/products/meat/3.png',
+              'title' => 'Стейк с кровью',
+              'price' => 699
+            ],
+          ];
+        ?>
+
+        <!-- <div class="section">
           <div class="section__title">Блюда</div>
           <div class="section__cards">
             <div class="card recommendation-card" >
@@ -65,13 +87,13 @@ session_start();
             <div class="section__next"><img src="../img/next.svg" alt="" srcset=""></div>
 
           </div>
-        </div>
+        </div> -->
 
 
         <div class="section">
           <div class="section__title">Продукты</div>
           <div class="section__cards">
-            <div class="card product-card" >
+            <!-- <div class="card product-card" >
               <div class="product-card__amount">X1</div>
               <img src="../img/products/vegetables/1.png" class="card-img-top" alt="...">
               <div class="card-body product-card__body">
@@ -95,7 +117,36 @@ session_start();
                   </div>
                 </div>
               </div>
-              </div>
+              </div> -->
+
+              <?php 
+                $cart = $_SESSION['cart'];
+                foreach(array_keys($_SESSION['cart']) as $uuid) {
+                  $price = $products[$uuid]['price'];
+                  if($cart[$uuid]['promocode'] === '222-222-222')
+                    $price =  round($price* 0.8);
+
+                  $img = $products[$uuid]['img'];
+                  $amount = $cart[$uuid]['amount'];
+                  $price = $price * $amount;
+                  $title = $products[$uuid]['title'];
+
+                  echo "
+                  <div class='card product-card' >
+                    <div class='product-card__amount'>X$amount</div>
+                    <img src='$img' class='card-img-top' />
+                    <div class='card-body product-card__body'>
+                      <h5 class='card-title product-card__title'>$title</h5>
+                      <div class='product-card__info'>
+                        <div class='product-card__price'>
+                          $price руб.
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  ";
+                }
+              ?>
 
               <div class="section__next"><img src="../img/next.svg" alt="" srcset=""></div>
             </div>

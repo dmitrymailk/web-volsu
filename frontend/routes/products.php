@@ -41,7 +41,7 @@ session_start();
         <div class="section">
           <div class="section__title">Мясные изделия</div>
           <div class="section__cards">
-            <a class="card product-card" href="./product-info.php">
+            <a class="card product-card" href="./product-info.php?uuid=asd123">
               <img src="../img/products/meat/1.png" class="card-img-top" alt="...">
               <div class="card-body product-card__body">
                 <h5 class="card-title product-card__title">Сосиски баварские на гриле</h5>
@@ -65,7 +65,7 @@ session_start();
               </div>
               </div>
 
-            <div class="card product-card" >
+            <a class="card product-card" href="./product-info.php?uuid=zxc123">
               <img src="../img/products/meat/3.png" class="card-img-top" alt="...">
               <div class="card-body product-card__body">
                 <h5 class="card-title product-card__title">Стейк с кровью</h5>
@@ -75,7 +75,7 @@ session_start();
                   </div>
                 </div>
               </div>
-              </div>
+            </a>
 
             <div class="card product-card" >
               <img src="../img/products/meat/4.png" class="card-img-top" alt="...">
@@ -97,7 +97,7 @@ session_start();
         <div class="section">
           <div class="section__title">Овощи</div>
           <div class="section__cards">
-            <div class="card product-card" >
+            <a class="card product-card" href="./product-info.php?uuid=qwe123">
               <img src="../img/products/vegetables/1.png" class="card-img-top" alt="...">
               <div class="card-body product-card__body">
                 <h5 class="card-title product-card__title">Сильно прожаренный картофель</h5>
@@ -107,7 +107,7 @@ session_start();
                   </div>
                 </div>
               </div>
-              </div>
+</a>
 
             <div class="card product-card" >
               <img src="../img/products/vegetables/2.png" class="card-img-top" alt="...">

@@ -37,15 +37,18 @@ session_start();
       $products = [
         'qwe123' => [
           'img' => '../img/product-info/potato.png',
-          'title' => 'Сильно прожаренный картофель'
+          'title' => 'Сильно прожаренный картофель',
+          'type' => 'product'
         ],
         'asd123' => [
           'img' => '../img/product-info/sousages.png',
-          'title' => 'Сосиски баварские на гриле'
+          'title' => 'Сосиски баварские на гриле',
+          'type' => 'product'
         ],
         'zxc123' => [
           'img' => '../img/product-info/steak.png',
-          'title' => 'Стейк с кровью'
+          'title' => 'Стейк с кровью',
+          'type' => 'product'
         ],
       ];
 
@@ -64,6 +67,8 @@ session_start();
             </div>
 
             <form class="product-info__controls" action="../../backend/product-info.php" method="POST">
+              <input type="hidden" name="uuid" value="<?php echo $uuid; ?>">
+              <input type="hidden" name="product_type" value="<?php echo $products[$uuid]['type']; ?>">
               <div class="product-info__amount">
                 <div class="product-info__amount-title">Количество:</div>
                 <span>X</span>
