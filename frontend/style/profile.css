@@ -71,4 +71,15 @@
   outline: none !important;
   font-size: 22px;
 }
+
+.history-card__img {
+  overflow: hidden;
+  height: 48px;
+  width: 48px;
+  border-radius: 4px;
+}
+
+.history-card__img img {
+  width: 100%;
+}
 /*# sourceMappingURL=profile.css.map */

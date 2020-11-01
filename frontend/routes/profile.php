@@ -16,7 +16,7 @@ session_start();
   <link rel="stylesheet" href="../style/menu.css">
   <link rel="stylesheet" href="../style/busket.css">
   <link rel="stylesheet" href="../style/profile.css">
-  
+
 </head>
 
 <body>
@@ -39,57 +39,76 @@ session_start();
         <div class="section">
           <h2>Уже есть аккаунт? <a href="../auth/login.php">Войти в аккаунт </a></h2>
           <h2>Первый раз на сайте? <a href="../auth/register.php">Зарегистрировать аккаунт </a></h2>
-          
+
         </div>
       <?php else : ?>
         <a href="../../backend/logout.php">Выйти из аккаунта </a>
-        
+
         <div class="section">
           <div class="section__title"><span>История заказов </div>
           <div class="section__history-cards">
             <?php
             require_once "../../backend/connect.php";
             $login = $_SESSION["USER"]['login'];
-            $user_history = mysqli_query($connect, "SELECT * FROM `users_info` WHERE `user_login` = '$login'");
+            
+            try {
+              // https://www.mssqltips.com/sqlservertip/1145/date-and-time-conversions-using-sql-server/ - convert date to style 103
+              $user_history_query = $pdo->prepare("SELECT * FROM user_orders WHERE user = ? ORDER BY convert(datetime, `date`, 103) ASC");
+              $user_history_query->execute([$login]);
+              $user_history = $user_history_query->fetchAll();
+            } catch (PDOException $e) {
+              echo $e->getMessage();
+            }
 
-            if (mysqli_num_rows($user_history) > 0) {
-              $history_data = mysqli_fetch_assoc($user_history);
-              $history_data = json_decode($history_data['user_data'], true);
+            ;
+            if (count($user_history) > 0) {
+              foreach ($user_history as $purchase) {
+                $uuid = $purchase['uuid'];
+                $purchase_query = $pdo->prepare("SELECT * FROM user_orders_products WHERE uuid = ?");
+                $purchase_query->execute([$uuid]);
+                $purchase_products = $purchase_query->fetchAll();
 
-              foreach ($history_data as $shop_history) {
-                $date = $shop_history['date'];
+                // print_r($purchase_products);
+
+                $date = $purchase['date'];
                 echo "
-              <div class='history-card'>
-              <div class='history-card__date'>$date</div>
-              <div class='history-card__items'>
-              ";
+                  <div class='history-card'>
+                  <div class='history-card__date'>$date</div>
+                  <div class='history-card__items'>
+                  ";
+
 
                 $total = 0;
-                foreach ($shop_history['data'] as $item) {
-                  $total += $item[3];
+                foreach ($purchase_products as $item) {
+                  $total += $item['price'];
+                  $amount = $item['amount'];
+                  $title = $item['title'];
+                  $price = $item['price'];
+                  $img = $item['img'];
+
                   // show one item
                   echo ("
-                  <div class='history-card__item'>
-                    <div class='history-card__img'>
-                      <img src='$item[0]'>
-                    </div>
-                    <div class='history-card__card-name'>$item[1]</div>
-                    <div class='history-card__amount'>X$item[2]</div>
-                    <div class='history-card__price'>$item[3] руб.</div>
-                  </div>
-                  ");
+                        <div class='history-card__item'>
+                          <div class='history-card__img'>
+                            <img src='$img'>
+                          </div>
+                          <div class='history-card__card-name'>$title</div>
+                          <div class='history-card__amount'>X$amount</div>
+                          <div class='history-card__price'>$price руб.</div>
+                          </div>
+                        ");
                 }
+                echo "</div>";
                 // total items
                 echo "
-              <div class='history-card__result'>
-                <div class='history-card__total'>Итого: $total руб.</div>
-                <button class='history-card__repeat'>Повторить</button>
-              </div>
-              </div>
-              ";
+                    <div class='history-card__result'>
+                      <div class='history-card__total'>Итого: $total руб.</div>
+                      <button class='history-card__repeat'>Повторить</button>
+                    </div></div>
+                    ";
               }
-              echo "</div></div>";
-            } else {
+            }
+            else {
               echo "<h4> История заказов пуста...</h4>";
             }
             ?>

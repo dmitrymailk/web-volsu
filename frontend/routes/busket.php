@@ -34,23 +34,17 @@ session_start();
       </div>
 
       <?php
-      // print_r($_SESSION);
+      // print_r($_SESSION['cart']);
 
       $products = [
         'qwe123' => [
           'img' => '../img/products/vegetables/1.png',
-          'title' => 'Сильно прожаренный картофель',
-          'price' => 159
         ],
         'asd123' => [
           'img' => '../img/products/meat/1.png',
-          'title' => 'Сосиски баварские на гриле',
-          'price' => 399
         ],
         'zxc123' => [
           'img' => '../img/products/meat/3.png',
-          'title' => 'Стейк с кровью',
-          'price' => 699
         ],
       ];
       ?>
@@ -81,14 +75,14 @@ session_start();
 
           </div>
         </div> -->
-      <div class="section">
+      <!-- <div class="section">
         <div class="section__title">Информация о заказе</div>
         <div class="busket__user">
           <div class="basket__total">
             Итого: <b>4232 руб.</b>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="section">
         <div class="section__title">Продукты</div>
@@ -122,14 +116,11 @@ session_start();
           <?php
           $cart = $_SESSION['cart'];
           foreach (array_keys($_SESSION['cart']) as $uuid) {
-            $price = $products[$uuid]['price'];
-            if ($cart[$uuid]['promocode'] === '222-222-222')
-              $price =  round($price * 0.8);
+            $price = $cart[$uuid]['price'];
 
             $img = $products[$uuid]['img'];
             $amount = $cart[$uuid]['amount'];
-            $price = $price * $amount;
-            $title = $products[$uuid]['title'];
+            $title = $cart[$uuid]['title'];
 
             echo "
                   <div class='card product-card' >

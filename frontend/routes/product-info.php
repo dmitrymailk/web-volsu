@@ -39,8 +39,8 @@ if(!isset($_SESSION['USER']))
       $products = [
         'qwe123' => [
           'img' => '../img/product-info/potato.png',
-          'title' => 'Сильно прожаренный картофель',
-          'type' => 'product'
+          // 'title' => 'Сильно прожаренный картофель',
+          // 'type' => 'product'
         ],
         'asd123' => [
           'img' => '../img/product-info/sousages.png',
@@ -49,8 +49,8 @@ if(!isset($_SESSION['USER']))
         ],
         'zxc123' => [
           'img' => '../img/product-info/steak.png',
-          'title' => 'Стейк с кровью',
-          'type' => 'product'
+          // 'title' => 'Стейк с кровью',
+          // 'type' => 'product'
         ],
       ];
 
@@ -70,7 +70,7 @@ if(!isset($_SESSION['USER']))
 
             <form class="product-info__controls" action="../../backend/product-info.php" method="POST">
               <input type="hidden" name="uuid" value="<?php echo $uuid; ?>">
-              <input type="hidden" name="product_type" value="<?php echo $products[$uuid]['type']; ?>">
+              <!-- <input type="hidden" name="type" value="<php echo $products[$uuid]['type']; ?>"> -->
               <div class="product-info__amount">
                 <div class="product-info__amount-title">Количество:</div>
                 <span>X</span>
