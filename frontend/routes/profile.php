@@ -52,8 +52,7 @@ session_start();
             $login = $_SESSION["USER"]['login'];
             
             try {
-              // https://www.mssqltips.com/sqlservertip/1145/date-and-time-conversions-using-sql-server/ - convert date to style 103
-              $user_history_query = $pdo->prepare("SELECT * FROM user_orders WHERE user = ? ORDER BY convert(datetime, `date`, 103) ASC");
+              $user_history_query = $pdo->prepare("SELECT * FROM user_orders WHERE user = ? ORDER BY date;");
               $user_history_query->execute([$login]);
               $user_history = $user_history_query->fetchAll();
             } catch (PDOException $e) {
