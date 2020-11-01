@@ -138,14 +138,24 @@ session_start();
                   ";
           }
           ?>
-
+          <?php if (count($cart) > 0) :  ?>
           <div class="section__next"><img src="../img/next.svg" alt="" srcset=""></div>
+          <?php endif; ?>
         </div>
 
       </div>
+      <?php
+      if(count($cart) > 0) {
+
+      } 
+      ?>
+      <?php if (count($cart) > 0) :  ?>
       <a class="basket__order" href="../../backend/order.php">
         Сделать заказ
       </a>
+      <?php else :  ?>
+        <h3>Empty </h3>
+      <?php endif; ?>
 
     </div>
 
