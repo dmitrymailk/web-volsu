@@ -34,7 +34,7 @@ session_start();
             </div>
           </a>
       </div>
-      <!-- КАКАЯ ЖЕ ТУТ НАЧИНАЕТСЯ МЕШАНИНА ЭТО ПРОСТО НЕПРИЕМЛИМО... -->
+     
       <?php if (!$_SESSION["USER"]) :  ?>
         <div class="section">
           <h2>Уже есть аккаунт? <a href="../auth/login.php">Войти в аккаунт </a></h2>
@@ -52,11 +52,12 @@ session_start();
             $login = $_SESSION["USER"]['login'];
             
             try {
-              $user_history_query = $pdo->prepare("SELECT * FROM user_orders WHERE user = ? ORDER BY date;");
+              $user_history_query = $pdo->prepare("SELECT * FROM user_orders WHERE user = ?;");
               $user_history_query->execute([$login]);
               $user_history = $user_history_query->fetchAll();
             } catch (PDOException $e) {
-              echo $e->getMessage();
+              // echo $e->getMessage();
+              echo "Something wrong with database";
             }
 
             ;

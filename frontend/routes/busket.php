@@ -49,70 +49,9 @@ session_start();
       ];
       ?>
 
-      <!-- <div class="section">
-          <div class="section__title">Блюда</div>
-          <div class="section__cards">
-            <div class="card recommendation-card" >
-              <div class="recommendation-card__amount">X2</div>
-              <img src="../img/menu/favorites/1.png" class="card-img-top" alt="...">
-              <div class="card-body recommendation-card__body">
-                <h5 class="card-title recommendation-card__title">Винный соус с курицей и грибами в сковороде</h5>
-                <div class="recommendation-card__info">
-                  <div class="recommendation-card__stars">
-                    <img src="../img/menu/star.svg" alt="">
-                    <img src="../img/menu/star.svg" alt="">
-                    <img src="../img/menu/star.svg" alt="">
-                    <img src="../img/menu/star.svg" alt="">
-                  </div>
-                  <div class="recommendation-card__price">
-                      499 руб.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="section__next"><img src="../img/next.svg" alt="" srcset=""></div>
-
-          </div>
-        </div> -->
-      <!-- <div class="section">
-        <div class="section__title">Информация о заказе</div>
-        <div class="busket__user">
-          <div class="basket__total">
-            Итого: <b>4232 руб.</b>
-          </div>
-        </div>
-      </div> -->
-
       <div class="section">
         <div class="section__title">Продукты</div>
         <div class="section__cards">
-          <!-- <div class="card product-card" >
-              <div class="product-card__amount">X1</div>
-              <img src="../img/products/vegetables/1.png" class="card-img-top" alt="...">
-              <div class="card-body product-card__body">
-                <h5 class="card-title product-card__title">Сильно прожаренный картофель</h5>
-                <div class="product-card__info">
-                  <div class="product-card__price">
-                    159 руб.
-                  </div>
-                </div>
-              </div>
-              </div>
-
-            <div class="card product-card" >
-              <div class="product-card__amount">X1</div>
-              <img src="../img/products/vegetables/2.png" class="card-img-top" alt="...">
-              <div class="card-body product-card__body">
-                <h5 class="card-title product-card__title">Яблочный салат с брокколи</h5>
-                <div class="product-card__info">
-                  <div class="product-card__price">
-                    189 руб.
-                  </div>
-                </div>
-              </div>
-              </div> -->
-
           <?php
           $cart = $_SESSION['cart'];
           foreach (array_keys($_SESSION['cart']) as $uuid) {
@@ -139,20 +78,19 @@ session_start();
           }
           ?>
           <?php if (count($cart) > 0) :  ?>
-          <div class="section__next"><img src="../img/next.svg" alt="" srcset=""></div>
+            <div class="section__next"><img src="../img/next.svg" alt="" srcset=""></div>
           <?php endif; ?>
         </div>
 
       </div>
       <?php
-      if(count($cart) > 0) {
-
-      } 
+      if (count($cart) > 0) {
+      }
       ?>
       <?php if (count($cart) > 0) :  ?>
-      <a class="basket__order" href="../../backend/order.php">
-        Сделать заказ
-      </a>
+        <a class="basket__order" href="../../backend/order.php">
+          Сделать заказ
+        </a>
       <?php else :  ?>
         <h3>Empty </h3>
       <?php endif; ?>
