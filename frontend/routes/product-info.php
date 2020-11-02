@@ -39,7 +39,7 @@ if(!isset($_SESSION['USER']))
       $products = [
         'qwe123' => [
           'img' => '../img/product-info/potato.png',
-          // 'title' => 'Сильно прожаренный картофель',
+          'title' => 'Сильно прожаренный картофель',
           // 'type' => 'product'
         ],
         'asd123' => [
@@ -49,7 +49,7 @@ if(!isset($_SESSION['USER']))
         ],
         'zxc123' => [
           'img' => '../img/product-info/steak.png',
-          // 'title' => 'Стейк с кровью',
+          'title' => 'Стейк с кровью',
           // 'type' => 'product'
         ],
       ];

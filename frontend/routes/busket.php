@@ -34,7 +34,6 @@ session_start();
       </div>
 
       <?php
-      // print_r($_SESSION['cart']);
 
       $products = [
         'qwe123' => [

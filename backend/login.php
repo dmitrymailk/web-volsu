@@ -16,7 +16,7 @@ if ($user_exists) {
     "login" => $login
   ];
 
-  header("Location: ../../frontend/routes/profile.php");
+  header("Location: ../frontend/routes/profile.php");
 } else {
   $_SESSION['login_error'] = "Incorrect user credentials";
 
