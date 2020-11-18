@@ -39,9 +39,42 @@ session_start();
         </div>
 
         <div class="section">
-          <div class="section__title">Мясные изделия</div>
+          <div class="section__title">Мясные изделия <a href="./product-info.php" class="section__add"><img src="../img/add.svg" ></a></div>
           <div class="section__cards">
-            <a class="card product-card" href="./product-info.php?uuid=asd123">
+
+          <?php
+            require_once "../../backend/connect.php";
+            try {
+              $products = $pdo->query("SELECT * FROM products")->fetchAll();
+              
+              // print_r($products);
+            } catch (PDOException $e) {
+              // echo $e->getMessage();
+              echo "Something wrong with database";
+            }
+            foreach($products as $product) {
+              $img_path = $product['img'];
+              $price = $product['price'];
+              $title = $product['title'];
+              $uuid = $product['uuid'];
+              // echo $uuid;
+              echo "
+              <a class='card product-card' href='./product-info.php?uuid=$uuid'>
+                <img src='$img_path' class='card-img-top'>
+                <div class='card-body product-card__body'>
+                  <h5 class='card-title product-card__title'>$title</h5>
+                  <div class='product-card__info'>
+                    <div class='product-card__price'>
+                      $price руб.
+                    </div>
+                  </div>
+                </div>
+              </a>
+              ";
+            }
+          ?>
+
+            <!-- <a class="card product-card" href="./product-info.php?uuid=asd123">
               <img src="../img/products/meat/1.png" class="card-img-top" alt="...">
               <div class="card-body product-card__body">
                 <h5 class="card-title product-card__title">Сосиски баварские на гриле</h5>
@@ -87,14 +120,14 @@ session_start();
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="section__next"><img src="../img/next.svg" alt="" srcset=""></div>
             
             </div>
         
           </div>
-        <div class="section">
+        <!-- <div class="section">
           <div class="section__title">Овощи</div>
           <div class="section__cards">
             <a class="card product-card" href="./product-info.php?uuid=qwe123">
@@ -147,7 +180,7 @@ session_start();
             
             <div class="section__next"><img src="../img/next.svg" alt="" srcset=""></div>
             </div>
-        </div>
+        </div> -->
 
         </div>
 
@@ -158,7 +191,7 @@ session_start();
           <img src="../img/back.png" alt="" srcset="">
         </div>
         <a class="app__right-name" href="../index.html">
-          ДОМ У ЕДЫ™
+          ДОМ У МЯСА™
         </a>
         <?php include "../components/search.php"; ?>
       </div>

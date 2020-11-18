@@ -10,13 +10,16 @@ $user_query->execute([$login, $password]);
 $user = $user_query->fetchAll();
 $user_exists = count($user);
 
+// print_r($user);
+// echo $user[0]['role'];
 
 if ($user_exists) {
   $_SESSION["USER"] = [
-    "login" => $login
+    "login" => $login,
+    "role" => $user[0]['role']
   ];
 
-  header("Location: ../../frontend/routes/profile.php");
+  header("Location: ../frontend/routes/profile.php");
 } else {
   $_SESSION['login_error'] = "Incorrect user credentials";
 

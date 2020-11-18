@@ -181,6 +181,12 @@ body, html {
 
 .section__title {
   font-size: 28px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .section__cards {
@@ -228,5 +234,18 @@ body, html {
   right: 8px;
   z-index: 3;
   cursor: pointer;
+}
+
+.section__add {
+  max-width: 32px;
+  max-height: 32px;
+  position: relative;
+  top: 4px;
+  margin-left: 16px;
+}
+
+.section__add img {
+  height: 100%;
+  width: 100%;
 }
 /*# sourceMappingURL=index.css.map */
