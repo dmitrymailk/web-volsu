@@ -4,34 +4,33 @@ session_start();
 if (!isset($_SESSION['USER']))
   header("Location: ../frontend/auth/register.php");
 
+require_once "./connect.php";
+
 $amount = $_POST['amount'];
 $promocode = $_POST['promocode'];
 $uuid = $_POST['uuid'];
 // $product_type = $_POST['product_type'];
+try {
+  $product_query = $pdo->prepare("SELECT * from products WHERE uuid = ?;");
+  $product_query->execute([$uuid]);
+  $product = $product_query->fetchAll();
+  $is_exist = count($product) > 0;
 
-$products = [
-  'qwe123' => [
-    'img' => '../img/products/vegetables/1.png',
-    'title' => 'Сильно прожаренный картофель',
-    'price' => 159,
-    'type' => 'product'
-  ],
-  'asd123' => [
-    'img' => '../img/products/meat/1.png',
-    'title' => 'Сосиски баварские на гриле',
-    'price' => 399,
-    'type' => 'product'
-  ],
-  'zxc123' => [
-    'img' => '../img/products/meat/3.png',
-    'title' => 'Стейк с кровью',
-    'price' => 699,
-    'type' => 'product'
-  ],
-];
-// no php validation, only js
+  if ($is_exist) {
+    $price = $product[0]['price'];
+    $title = $product[0]['title'];
+    $img = $product[0]['img'];
+  } else {
+    header("Location: ../frontend/routes/products.php");
+  }
+} catch (PDOException $e) {
+  echo "DB ERROR! " . $e->getMessage();
+  
+}
 
-$price = $products[$uuid]['price'];
+print_r([$price, $img, $title]);
+
+// $price = $product'price'];
 
 if ($promocode === '222-222-222')
   $price = round($price * 0.8);
@@ -41,10 +40,10 @@ $price = $price * $amount;
 $product = [
   'promocode' => $promocode,
   'amount' => $amount,
-  'type' => $products[$uuid]['type'],
-  'title' => $products[$uuid]['title'],
+  'type' => 'product',
+  'title' => $title,
   'price' => $price,
-  'img' => $products[$uuid]['img']
+  'img' => $img
 ];
 
 

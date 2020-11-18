@@ -33,22 +33,6 @@ session_start();
           </a>
       </div>
 
-      <?php
-      // print_r($_SESSION['cart']);
-
-      $products = [
-        'qwe123' => [
-          'img' => '../img/products/vegetables/1.png',
-        ],
-        'asd123' => [
-          'img' => '../img/products/meat/1.png',
-        ],
-        'zxc123' => [
-          'img' => '../img/products/meat/3.png',
-        ],
-      ];
-      ?>
-
       <div class="section">
         <div class="section__title">Продукты</div>
         <div class="section__cards">
@@ -57,7 +41,7 @@ session_start();
           foreach (array_keys($_SESSION['cart']) as $uuid) {
             $price = $cart[$uuid]['price'];
 
-            $img = $products[$uuid]['img'];
+            $img = $cart[$uuid]['img'];
             $amount = $cart[$uuid]['amount'];
             $title = $cart[$uuid]['title'];
 

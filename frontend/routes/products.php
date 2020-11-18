@@ -1,5 +1,6 @@
 <?php
 session_start();
+$is_admin = $_SESSION['USER']['role'] === 'admin';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +40,13 @@ session_start();
         </div>
 
         <div class="section">
-          <div class="section__title">Мясные изделия <a href="./product-info.php" class="section__add"><img src="../img/add.svg" ></a></div>
+          <div class="section__title">Мясные изделия
+            <?php if ($is_admin) : ?>
+                <a href="./product-info.php" class="section__add">
+                  <img src="../img/add.svg" >
+                </a>
+            <?php endif; ?>
+          </div>
           <div class="section__cards">
 
           <?php

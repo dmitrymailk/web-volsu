@@ -63,8 +63,8 @@ session_start();
             ;
             if (count($user_history) > 0) {
               foreach ($user_history as $purchase) {
-                $uuid = $purchase['uuid'];
-                $purchase_query = $pdo->prepare("SELECT * FROM user_orders_products WHERE uuid = ?");
+                $uuid = $purchase['order_uuid'];
+                $purchase_query = $pdo->prepare("SELECT * FROM user_orders_products WHERE order_uuid = ?");
                 $purchase_query->execute([$uuid]);
                 $purchase_products = $purchase_query->fetchAll();
 

@@ -66,7 +66,7 @@ if (!isset($_SESSION['USER']))
 
           <div class="product-info__group">
             <div class="product-info__img">
-              <img src="<?php echo $products[$uuid]['img']; ?>">
+              <img src="<?php echo $img; ?>">
             </div>
 
             <form class="product-info__controls" action="../../backend/product-info.php" method="POST">
