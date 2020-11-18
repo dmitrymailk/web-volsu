@@ -38,23 +38,6 @@ if (!isset($_SESSION['USER']))
       require_once "../../backend/connect.php";
 
       $uuid = $_GET['uuid'];
-      $products = [
-        'qwe123' => [
-          'img' => '../img/product-info/potato.png',
-          // 'title' => 'Сильно прожаренный картофель',
-          // 'type' => 'product'
-        ],
-        'asd123' => [
-          'img' => '../img/product-info/sousages.png',
-          'title' => 'Сосиски баварские на гриле',
-          'type' => 'product'
-        ],
-        'zxc123' => [
-          'img' => '../img/product-info/steak.png',
-          // 'title' => 'Стейк с кровью',
-          // 'type' => 'product'
-        ],
-      ];
 
       $is_exist = false;
       $is_admin = $_SESSION['USER']['role'] === 'admin';
@@ -66,7 +49,6 @@ if (!isset($_SESSION['USER']))
 
         if ($is_exist) {
           $price = $product[0]['price'];
-          $uuid = $product[0]['uuid'];
           $title = $product[0]['title'];
           $img = $product[0]['img'];
         }
@@ -113,13 +95,14 @@ if (!isset($_SESSION['USER']))
         </div>
         </form>
       <?php elseif ($is_admin && $is_exist) : ?>
-        <h1>You're admin</h1>
-        <form class="product-info" action="../../backend/components/upload.php?uuid=<?php echo $uuid; ?>" method="POST" enctype="multipart/form-data">
+        <h1>Update</h1>
+        <form class="product-info" action="../../backend/upload/upload_put.php?uuid=<?php echo $uuid; ?>" method="POST" enctype="multipart/form-data">
           <div class="product-info__title">Информация о продукте</div>
+          <input type="hidden" name="uuid" value="<?php echo $uuid; ?>">
 
           <div class="product-info__group">
             <div class="product-info__img">
-              <img class="product-info__img-fix" src="<?php echo $img ?>" >
+              <img class="product-info__img-fix" src="<?php echo $img ?>" id="imagePreview">
               <div class="product-info__add">
                 <input class="product-info__img-add" type="file" name="image" id="image" multiple />
                 <img src="../img/add.svg">
@@ -135,7 +118,6 @@ if (!isset($_SESSION['USER']))
               <button class="product-info__cart" type="submit" id="submit" disabled>
                 Обновить элемент
               </button>
-
             </div>
           </div>
 
@@ -143,13 +125,21 @@ if (!isset($_SESSION['USER']))
             <input class="product-info__name-title" type="text" placeholder="Введите название продукта" name='title' id='title' value="<?php echo $title; ?>">
           </div>
         </form>
+        <form action="../../backend/upload/upload_delete.php" method="post">
+          <input type="text" type="hidden" name="uuid" value="<?php echo $uuid; ?>" hidden>
+          <button class="product-info__cart" type="submit">
+            Удалить элемент
+          </button>
+        </form>
+
       <?php elseif ($is_admin && !$is_exist) : ?>
-        <h1>You're admin</h1>
-        <form class="product-info" action="../../backend/components/upload.php" method="POST" enctype="multipart/form-data">
+        <h1>Add new</h1>
+        <form class="product-info" action="../../backend/upload/upload.php" method="POST" enctype="multipart/form-data">
           <div class="product-info__title">Информация о продукте</div>
 
           <div class="product-info__group">
             <div class="product-info__img">
+              <img class="product-info__img-fix" src="" id="imagePreview">
               <div class="product-info__add">
                 <input class="product-info__img-add" type="file" name="image" id="image" multiple />
                 <img src="../img/add.svg">
@@ -290,6 +280,7 @@ if (!isset($_SESSION['USER']))
       let image = $("#image")
       let title = $("#title")
       let imageBorder = $(".product-info__img")
+      let imagePreview = $("#imagePreview");
 
       const maxPrice = 10000;
 
@@ -300,7 +291,6 @@ if (!isset($_SESSION['USER']))
       }
 
       image.addEventListener("change", e => {
-        console.log("SOME", e)
         let elem = e.srcElement;
         let hasFiles = elem.files.length > 0;
 
@@ -312,6 +302,12 @@ if (!isset($_SESSION['USER']))
 
           if (imageBorder.classList.contains(elemClassIncorrect))
             imageBorder.classList.remove(elemClassIncorrect)
+
+          var loadImage = new FileReader();
+          loadImage.addEventListener('load', () => {
+            imagePreview.src = loadImage.result;
+          });
+          loadImage.readAsDataURL(elem.files[0]);
           setState('image', true);
         } else {
           imageBorder.classList.add(elemClassIncorrect);
@@ -404,10 +400,11 @@ if (!isset($_SESSION['USER']))
   <script>
     window.onload = () => {
       const $ = (selector) => document.querySelector(selector);
-      let amount = $("#price")
-      let image = $("#image")
-      let title = $("#title")
-      let imageBorder = $(".product-info__img")
+      let amount = $("#price");
+      let image = $("#image");
+      let title = $("#title");
+      let imageBorder = $(".product-info__img");
+      let imagePreview = $("#imagePreview");
 
       const maxPrice = 10000;
 
@@ -418,7 +415,6 @@ if (!isset($_SESSION['USER']))
       }
 
       image.addEventListener("change", e => {
-        console.log("SOME", e)
         let elem = e.srcElement;
         let hasFiles = elem.files.length > 0;
 
@@ -430,6 +426,12 @@ if (!isset($_SESSION['USER']))
 
           if (imageBorder.classList.contains(elemClassIncorrect))
             imageBorder.classList.remove(elemClassIncorrect)
+
+          var loadImage = new FileReader();
+          loadImage.addEventListener('load', () => {
+            imagePreview.src = loadImage.result;
+          });
+          loadImage.readAsDataURL(elem.files[0]);
           setState('image', true);
         } else {
           imageBorder.classList.add(elemClassIncorrect);
