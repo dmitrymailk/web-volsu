@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   if (isset($_POST['uuid'])) {
     $uuid = $_POST['uuid'];
-
+    unlink('../uploads/'. $uuid . ".png");
     try {
       $pdo->prepare("DELETE FROM products WHERE uuid=?;")->execute([$uuid]);
     } catch (PDOException $e) {

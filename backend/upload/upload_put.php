@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if (empty($errors)) {
 
         $file = $path . $uuid . ".$file_ext";
-        // unlink('../uploads/'. $uuid . ".$file_ext");
+        unlink('../uploads/'. $uuid . ".$file_ext");
         move_uploaded_file($file_tmp,  $file);
         $root_url = "http://localhost/web-volsu/backend/uploads/";
         $relative_path = $root_url . $uuid . ".$file_ext";
