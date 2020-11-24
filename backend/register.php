@@ -21,9 +21,8 @@ $user_exists = count($user);
 
 if (!$user_exists) {
 
-
-  if (strlen($login) < 3) {
-    $_SESSION['register_error_login_short'] = "Too short login";
+  if (strlen($login) < 3 || strlen($login) > 25) {
+    $_SESSION['register_error_login_short'] = "Invalid login";
     header("Location: $redirect");
   } else {
 
@@ -47,7 +46,6 @@ if (!$user_exists) {
     $responseKeys = json_decode($response, true);
 
     if ($responseKeys["success"]) {
-      // $is_register = mysqli_query($connect, "INSERT INTO `users` (`login`, `password`) VALUES ('$login', '$password')");
       try {
         $register_query = $pdo->prepare("INSERT INTO `users` (`login`, `password`) VALUES (?, ?)");
         $register_query->execute([$login, $password]);
