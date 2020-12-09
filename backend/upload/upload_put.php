@@ -52,13 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $title = $_POST['title'];
         $price = $_POST['price'];
+        $type = $_POST['type'];
+        
+        $query_str = "UPDATE $type SET img=?, title=?, price=? WHERE uuid=?;";
 
-        // UPDATE table_name
-        // SET column1=value, column2=value2,...
-        // WHERE some_column=some_value
-        // add to products table
         try {
-          $pdo->prepare("UPDATE products SET img=?, title=?, price=? WHERE uuid=?;")->execute([$relative_path, $title, $price, $uuid]);
+          $pdo->prepare($query_str)->execute([$relative_path, $title, $price, $uuid]);
         } catch (PDOException $e) {
           header("Location: ../../frontend/routes/product-info.php");
         }

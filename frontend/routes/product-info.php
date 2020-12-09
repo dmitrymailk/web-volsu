@@ -39,22 +39,28 @@ if (!isset($_SESSION['USER']))
       require_once "../../backend/connect.php";
 
       $uuid = $_GET['uuid'];
-
+      $type = $_GET['type'];
+      
       $is_exist = false;
       $is_admin = $_SESSION['USER']['role'] === 'admin';
-      try {
-        $product_query = $pdo->prepare("SELECT * from products WHERE uuid = ?;");
-        $product_query->execute([$uuid]);
-        $product = $product_query->fetchAll();
-        $is_exist = count($product) > 0;
 
-        if ($is_exist) {
-          $price = $product[0]['price'];
-          $title = $product[0]['title'];
-          $img = $product[0]['img'];
+      if($type) {
+        $query_str = "SELECT * from $type WHERE uuid = ?;";
+  
+        try {
+          $product_query = $pdo->prepare($query_str);
+          $product_query->execute([$uuid]);
+          $product = $product_query->fetchAll();
+          $is_exist = count($product) > 0;
+  
+          if ($is_exist) {
+            $price = $product[0]['price'];
+            $title = $product[0]['title'];
+            $img = $product[0]['img'];
+          }
+        } catch (PDOException $e) {
+          echo "DB ERROR! " . $e->getMessage();
         }
-      } catch (PDOException $e) {
-        echo "DB ERROR! " . $e->getMessage();
       }
 
       ?>
@@ -72,6 +78,7 @@ if (!isset($_SESSION['USER']))
 
             <form class="product-info__controls" action="../../backend/product-info.php" method="POST">
               <input type="hidden" name="uuid" value="<?php echo $uuid; ?>">
+              <input type="hidden" name="type" value="<?php echo $type; ?>">
               <!-- <input type="hidden" name="type" value="<php echo $products[$uuid]['type']; ?>"> -->
               <div class="product-info__amount">
                 <div class="product-info__amount-title">Количество:</div>
@@ -97,9 +104,10 @@ if (!isset($_SESSION['USER']))
         </form>
       <?php elseif ($is_admin && $is_exist) : ?>
         <h1>Update</h1>
-        <form class="product-info" action="../../backend/upload/upload_put.php?uuid=<?php echo $uuid; ?>" method="POST" enctype="multipart/form-data">
+        <form class="product-info" action="../../backend/upload/upload_put.php" method="POST" enctype="multipart/form-data">
           <div class="product-info__title">Информация о продукте</div>
           <input type="hidden" name="uuid" value="<?php echo $uuid; ?>">
+          <input type="hidden" name="type" value="<?php echo $type; ?>">
 
           <div class="product-info__group">
             <div class="product-info__img">
@@ -151,6 +159,17 @@ if (!isset($_SESSION['USER']))
               <div class="product-info__promocode">
                 <div class="product-info__promocode-title">Стоимость:</div>
                 <input class="product-info__promocode-code" id="price" name="price">
+
+                <div>
+                  <select name="type" id="">
+                    <option value="products">Products</option>
+                    <option value="drinks">Drinks</option>
+                    <option value="sweets">Sweets</option>
+                    <option value="vegetables">Vegetables</option>
+                    <option value="meat">Meat</option>
+                    <option value="fruits">Fruits</option>
+                  </select>
+                </div>
               </div>
 
               <button class="product-info__cart" type="submit" id="submit" disabled>
@@ -397,7 +416,7 @@ if (!isset($_SESSION['USER']))
       }
     }
   </script>
-<!-- php elseif ($is_admin) : ?>
+<?php elseif ($is_admin) : ?>
   <script>
     window.onload = () => {
       const $ = (selector) => document.querySelector(selector);
@@ -523,7 +542,7 @@ if (!isset($_SESSION['USER']))
 
 
     }
-  </script> -->
+  </script>
 <?php endif; ?>
 
 </html>

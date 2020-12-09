@@ -9,9 +9,12 @@ require_once "./connect.php";
 $amount = $_POST['amount'];
 $promocode = $_POST['promocode'];
 $uuid = $_POST['uuid'];
-// $product_type = $_POST['product_type'];
+$type = $_POST['type'];
+
+$query_str = "SELECT * from $type WHERE uuid = ?;";
+
 try {
-  $product_query = $pdo->prepare("SELECT * from products WHERE uuid = ?;");
+  $product_query = $pdo->prepare($query_str);
   $product_query->execute([$uuid]);
   $product = $product_query->fetchAll();
   $is_exist = count($product) > 0;
@@ -40,7 +43,7 @@ $price = $price * $amount;
 $product = [
   'promocode' => $promocode,
   'amount' => $amount,
-  'type' => 'product',
+  'type' => $type,
   'title' => $title,
   'price' => $price,
   'img' => $img

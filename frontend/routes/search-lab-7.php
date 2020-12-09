@@ -40,40 +40,35 @@ $is_admin = $_SESSION['USER']['role'] === 'admin';
           <button type='submit'>
             <img src='../img/components/search/search-button.svg'>
           </button>
-          <br>
-          <div>
-            <input type="checkbox" id="poor-food" name="poor-food" value="1">
-            <label for="poor-food">Дешевая еда</label>
-          </div>
-          <br>
-          <div>
-            <input type="checkbox" id="scales" name="product_type" value="1" >
-            <label for="scales">Блюда</label>
-          </div>
-          <br>
-          <div>
-            <input type="checkbox" id="scales" name="drinks_type" value="1">
-            <label for="scales">Напитки</label>
-          </div>
-          <br>
-          <div>
-            <input type="checkbox" id="scales" name="fruits_type" value="1">
-            <label for="scales">Фрукты</label>
-          </div>
-          <br>
-          <div>
-            <input type="checkbox" id="scales" name="vegetables_type" value="1">
-            <label for="scales">Овощи</label>
-          </div>
-          <br>
-          <div>
-            <input type="checkbox" id="scales" name="meat_type" value="1">
-            <label for="scales">Мясо</label>
-          </div>
-          <br>
-          <div>
-            <input type="checkbox" id="scales" name="sweets_type" value="1">
-            <label for="scales">Сладости</label>
+          <div class="parameters">
+            <div class="parameters__item">
+              <input type="checkbox" id="poor-food" name="poor-food" value="1">
+              <label for="poor-food">Дешевая еда</label>
+            </div>
+            <div class="parameters__item">
+              <input type="checkbox" id="scales" name="product_type" value="1" checked>
+              <label for="scales">Блюда</label>
+            </div>
+            <div class="parameters__item">
+              <input type="checkbox" id="scales" name="drinks_type" value="1" checked>
+              <label for="scales">Напитки</label>
+            </div>
+            <div class="parameters__item">
+              <input type="checkbox" id="scales" name="fruits_type" value="1" checked>
+              <label for="scales">Фрукты</label>
+            </div>
+            <div class="parameters__item">
+              <input type="checkbox" id="scales" name="vegetables_type" value="1" checked>
+              <label for="scales">Овощи</label>
+            </div>
+            <div class="parameters__item">
+              <input type="checkbox" id="scales" name="meat_type" value="1" checked>
+              <label for="scales">Мясо</label>
+            </div>
+            <div class="parameters__item">
+              <input type="checkbox" id="scales" name="sweets_type" value="1" checked>
+              <label for="scales">Сладости</label>
+            </div>
           </div>
         </form>
 
@@ -81,17 +76,17 @@ $is_admin = $_SESSION['USER']['role'] === 'admin';
           <?php
           $results = $_SESSION['global-search'];
 
-          // print_r($results);
-
+         
           foreach ($results as $result) {
             
             $img_path = $result['img'];
             $price = $result['price'];
             $title = $result['title'];
             $uuid = $result['uuid'];
-            // echo $uuid;
+            $type = $result['type'];
+
             echo "
-              <a class='card product-card mt-10' href='./product-info.php?uuid=$uuid'>
+              <a class='card product-card mt-10' href='./product-info.php?uuid=$uuid&type=$type'>
                 <img src='$img_path' class='card-img-top'>
                 <div class='card-body product-card__body'>
                   <h5 class='card-title product-card__title'>$title</h5>
@@ -104,6 +99,9 @@ $is_admin = $_SESSION['USER']['role'] === 'admin';
               </a>
               ";
           }
+
+          unset($_SESSION['global-search']);
+
           ?>
         </div>
       </div>
@@ -136,6 +134,32 @@ $is_admin = $_SESSION['USER']['role'] === 'admin';
   .mt-10 {
     margin-top: 10;
   }
+
+  .parameters {
+    display: flex;
+  }
+
+  .parameters__item {
+    margin: 10px;
+  }
+
+  .global-search__input-field {
+    width: 400px;
+    height: 40px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    outline: none !important;
+  }
+
+  .global-search__input >  button {
+    height: 40px;
+    width: 40px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    background: #fff;
+  }
+
+
 </style>
 
 </html>
