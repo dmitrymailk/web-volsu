@@ -1,6 +1,11 @@
 <?php
 session_start();
 $is_admin = $_SESSION['USER']['role'] === 'admin';
+
+require_once "../../backend/connect.php";
+require_once "../../backend/utils.php";
+
+log_user_action("visit page", "visit lab-7-page page", $pdo);
 ?>
 <!DOCTYPE html>
 <html lang="en">

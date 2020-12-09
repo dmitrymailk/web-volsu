@@ -2,6 +2,11 @@
 session_start();
 if (!isset($_SESSION['USER']))
   header("Location: ../auth/register.php");
+
+require_once "../../backend/connect.php";
+require_once "../../backend/utils.php";
+
+log_user_action("visit page", "visit product-info page", $pdo);
 ?>
 <!DOCTYPE html>
 <html lang="en">

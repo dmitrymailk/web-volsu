@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once "../../backend/connect.php";
+require_once "../../backend/utils.php";
+
+log_user_action("visit page", "visit menu page", $pdo);
 ?>
 <!DOCTYPE html>
 <html lang="en">

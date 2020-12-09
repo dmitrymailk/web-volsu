@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "connect.php";
+require_once "utils.php";
 
 $login = $_POST['login'];
 $password = md5($_POST['password']);
@@ -18,6 +19,8 @@ if ($user_exists) {
     "login" => $login,
     "role" => $user[0]['role']
   ];
+
+  log_user_action("logged", "User logged successfully!", $pdo);
 
   header("Location: ../frontend/routes/profile.php");
 } else {

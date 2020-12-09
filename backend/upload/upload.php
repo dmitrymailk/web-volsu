@@ -48,12 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       // add to products table
       $query_str = "INSERT INTO $type ( uuid, title, img, price) VALUES ( ?, ?, ?, ?);";
-      
+
       try {
         $pdo->prepare($query_str)->execute([$uuid, $title, $relative_path, $price]);
       } catch (PDOException $e) {
         header("Location: ../../frontend/routes/product-info.php");
       }
+
+      log_user_action("upload item", "upload $title $price $type ", $pdo);
       
       header("Location: ../../frontend/routes/products.php");
 
