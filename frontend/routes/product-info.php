@@ -396,7 +396,7 @@ if (!isset($_SESSION['USER']))
       }
     }
   </script>
-<?php elseif ($is_admin) : ?>
+<!-- php elseif ($is_admin) : ?>
   <script>
     window.onload = () => {
       const $ = (selector) => document.querySelector(selector);
@@ -522,7 +522,7 @@ if (!isset($_SESSION['USER']))
 
 
     }
-  </script>
+  </script> -->
 <?php endif; ?>
 
 </html>
