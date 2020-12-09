@@ -1,6 +1,5 @@
 <?php
 session_start();
-echo "test 1";
 
 if (!isset($_SESSION['USER']))
 header("Location: ../frontend/auth/profile.php");

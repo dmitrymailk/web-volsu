@@ -22,6 +22,7 @@ if (!isset($_SESSION['USER']))
     <div class="app__left">
       <div class="app__nav">
         <nav class="nav">
+          <a class="nav-link" href="./search-lab-7.php">Поиск</a>
           <a class="nav-link" href="./menu.php">Меню</a>
           <a class="nav-link active" href="./products.php">Продукты</a>
           <a class="nav-link" href="./profile.php">Кабинет</a>
