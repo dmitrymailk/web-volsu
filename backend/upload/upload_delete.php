@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+echo "ERWERE";
+// echo isset($_POST['uuid']);
+// echo isset($_POST['type']);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   require_once "../connect.php";
   
@@ -8,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uuid = $_POST['uuid'];
     $type = $_POST['type'];
     $query_str = "DELETE FROM $type WHERE uuid=?;";
-    
     unlink('../uploads/'. $uuid . ".png");
     try {
       $pdo->prepare($query_str)->execute([$uuid]);

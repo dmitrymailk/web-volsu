@@ -141,6 +141,7 @@ log_user_action("visit page", "visit product-info page", $pdo);
         </form>
         <form action="../../backend/upload/upload_delete.php" method="post">
           <input type="text" type="hidden" name="uuid" value="<?php echo $uuid; ?>" hidden>
+          <input type="text" type="hidden" name="type" value="<?php echo $type; ?>" hidden>
           <button class="product-info__cart" type="submit">
             Удалить элемент
           </button>
