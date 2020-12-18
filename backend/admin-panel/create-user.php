@@ -24,8 +24,10 @@ if(strlen($password) < 3)
 if(!in_array($role, ['user', 'admin']))
   $admin_errors[] = "Incorrect role";
 
+
+
 if(count($admin_errors) == 0) {
-  
+
   $is_register = $pdo
   ->prepare("INSERT INTO `users` (`login`, `password`, `role`) VALUES (?, ?, ?)")
   ->execute([$login, $password, $role]);
