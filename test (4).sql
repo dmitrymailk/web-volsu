@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Ноя 20 2020 г., 20:59
--- Версия сервера: 8.0.22-0ubuntu0.20.04.2
+-- Время создания: Дек 18 2020 г., 18:22
+-- Версия сервера: 8.0.22-0ubuntu0.20.04.3
 -- Версия PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -40,7 +40,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`uuid`, `title`, `img`, `price`) VALUES
-('ea6dc51b-ffac-48c5-be5f-b4031b139d30', 'qwe qwe', 'http://localhost/web-volsu/backend/uploads/ea6dc51b-ffac-48c5-be5f-b4031b139d30.png', 1233);
+('7fac7af8-ce31-433f-a8fc-d979f493f047', 'Курицааа 213234', 'http://localhost/web-volsu/backend/uploads/7fac7af8-ce31-433f-a8fc-d979f493f047.png', 200),
+('ea6dc51b-ffac-48c5-be5f-b4031b139d30', 'qwe qwe 1232', 'http://localhost/web-volsu/backend/uploads/ea6dc51b-ffac-48c5-be5f-b4031b139d30.jpg', 123);
 
 -- --------------------------------------------------------
 
@@ -60,11 +61,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `role`) VALUES
-(4, 'qwe', '76d80224611fc919a5d54f0ff9fba446', 'admin'),
-(10, 'asd', '7815696ecbf1c96e6894b779456d330e', 'user'),
+(4, 'qwe', '76d80224611fc919a5d54f0ff9fba446', 'superadmin'),
 (13, 'dimweb', '202cb962ac59075b964b07152d234b70', 'user'),
-(18, 'dimweb2', '202cb962ac59075b964b07152d234b70', 'user'),
-(19, 'qwe2', '516b5d9924c123fecc22e0eff6c3e179', 'user');
+(18, 'dimweb345e', 'be7fb387d55bf32ccf3265ba9730e549', 'admin'),
+(21, 'new_user_15', '76d80224611fc919a5d54f0ff9fba446', 'user'),
+(23, 'test', '202cb962ac59075b964b07152d234b70', 'admin');
 
 -- --------------------------------------------------------
 
@@ -83,7 +84,8 @@ CREATE TABLE `user_orders` (
 --
 
 INSERT INTO `user_orders` (`user`, `date`, `order_uuid`) VALUES
-('dimweb', '2020-11-20', 'be38cf07-18de-4746-b31e-bdeb55d057d7');
+('dimweb', '2020-11-20', 'be38cf07-18de-4746-b31e-bdeb55d057d7'),
+('new_user_15', '2020-12-18', 'dc9658b5-b9a4-4a91-ac46-9e2a5a73d32f');
 
 -- --------------------------------------------------------
 
@@ -100,6 +102,13 @@ CREATE TABLE `user_orders_products` (
   `type` varchar(100) NOT NULL,
   `product_uuid` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `user_orders_products`
+--
+
+INSERT INTO `user_orders_products` (`order_uuid`, `img`, `title`, `amount`, `price`, `type`, `product_uuid`) VALUES
+('dc9658b5-b9a4-4a91-ac46-9e2a5a73d32f', 'http://localhost/web-volsu/backend/uploads/7fac7af8-ce31-433f-a8fc-d979f493f047.png', 'Курицааа 213234', 3, 600, 'product', '7fac7af8-ce31-433f-a8fc-d979f493f047');
 
 --
 -- Индексы сохранённых таблиц
@@ -141,7 +150,7 @@ ALTER TABLE `user_orders_products`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
