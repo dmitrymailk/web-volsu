@@ -32,6 +32,7 @@ if (!isset($_SESSION['USER']))
               3
             </div>
           </a>
+          <?php require_once '../components/admin-panel.php' ?>
       </div>
 
       <?php
@@ -40,7 +41,7 @@ if (!isset($_SESSION['USER']))
       $uuid = $_GET['uuid'];
 
       $is_exist = false;
-      $is_admin = $_SESSION['USER']['role'] === 'admin';
+      $is_admin = in_array($_SESSION['USER']['role'], ['superadmin', 'admin']);
       try {
         $product_query = $pdo->prepare("SELECT * from products WHERE uuid = ?;");
         $product_query->execute([$uuid]);

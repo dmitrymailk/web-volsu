@@ -33,6 +33,7 @@ session_start();
               3
             </div>
           </a>
+          <?php require_once '../components/admin-panel.php' ?>
       </div>
      
       <?php if (!$_SESSION["USER"]) :  ?>

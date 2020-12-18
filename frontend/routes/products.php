@@ -1,6 +1,6 @@
 <?php
 session_start();
-$is_admin = $_SESSION['USER']['role'] === 'admin';
+$is_admin = in_array($_SESSION['USER']['role'], ['superadmin', 'admin']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,10 +37,11 @@ $is_admin = $_SESSION['USER']['role'] === 'admin';
                 3
               </div>
             </a>
+            <?php require_once '../components/admin-panel.php' ?>
         </div>
 
         <div class="section">
-          <div class="section__title">Мясные изделия
+          <div class="section__title">Продукты
             <?php if ($is_admin) : ?>
                 <a href="./product-info.php" class="section__add">
                   <img src="../img/add.svg" >
@@ -81,114 +82,13 @@ $is_admin = $_SESSION['USER']['role'] === 'admin';
             }
           ?>
 
-            <!-- <a class="card product-card" href="./product-info.php?uuid=asd123">
-              <img src="../img/products/meat/1.png" class="card-img-top" alt="...">
-              <div class="card-body product-card__body">
-                <h5 class="card-title product-card__title">Сосиски баварские на гриле</h5>
-                <div class="product-card__info">
-                  <div class="product-card__price">
-                      399 руб.
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <div class="card product-card" >
-              <img src="../img/products/meat/2.png" class="card-img-top" alt="...">
-              <div class="card-body product-card__body">
-                <h5 class="card-title product-card__title">Курица гриль</h5>
-                <div class="product-card__info">
-                  <div class="product-card__price">
-                    299 руб.
-                  </div>
-                </div>
-              </div>
-              </div>
-
-            <a class="card product-card" href="./product-info.php?uuid=zxc123">
-              <img src="../img/products/meat/3.png" class="card-img-top" alt="...">
-              <div class="card-body product-card__body">
-                <h5 class="card-title product-card__title">Стейк с кровью</h5>
-                <div class="product-card__info">
-                  <div class="product-card__price">
-                    699 руб.
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <div class="card product-card" >
-              <img src="../img/products/meat/4.png" class="card-img-top" alt="...">
-              <div class="card-body product-card__body">
-                <h5 class="card-title product-card__title">Котлеты домашние</h5>
-                <div class="product-card__info">
-                  <div class="product-card__price">
-                    199 руб.
-                  </div>
-                </div>
-              </div>
-            </div> -->
-
+          
             <div class="section__next"><img src="../img/next.svg" alt="" srcset=""></div>
             
             </div>
         
           </div>
-        <!-- <div class="section">
-          <div class="section__title">Овощи</div>
-          <div class="section__cards">
-            <a class="card product-card" href="./product-info.php?uuid=qwe123">
-              <img src="../img/products/vegetables/1.png" class="card-img-top" alt="...">
-              <div class="card-body product-card__body">
-                <h5 class="card-title product-card__title">Сильно прожаренный картофель</h5>
-                <div class="product-card__info">
-                  <div class="product-card__price">
-                    159 руб.
-                  </div>
-                </div>
-              </div>
-</a>
-
-            <div class="card product-card" >
-              <img src="../img/products/vegetables/2.png" class="card-img-top" alt="...">
-              <div class="card-body product-card__body">
-                <h5 class="card-title product-card__title">Яблочный салат с брокколи</h5>
-                <div class="product-card__info">
-                  <div class="product-card__price">
-                    189 руб.
-                  </div>
-                </div>
-              </div>
-              </div>
-
-            <div class="card product-card" >
-              <img src="../img/products/vegetables/3.png" class="card-img-top" alt="...">
-              <div class="card-body product-card__body">
-                <h5 class="card-title product-card__title">Летний салат из томатов черри</h5>
-                <div class="product-card__info">
-                  <div class="product-card__price">
-                    199 руб.
-                  </div>
-                </div>
-              </div>
-              </div>
-
-            <div class="card product-card" >
-              <img src="../img/products/vegetables/4.png" class="card-img-top" alt="...">
-              <div class="card-body product-card__body">
-                <h5 class="card-title product-card__title">Свежий салат</h5>
-                <div class="product-card__info">
-                  <div class="product-card__price">
-                    59 руб.
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="section__next"><img src="../img/next.svg" alt="" srcset=""></div>
-            </div>
-        </div> -->
-
+    
         </div>
 
         
